@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StartingServices"
         tools:targetApi="31">
+        <service
+            android:name=".TimerService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
