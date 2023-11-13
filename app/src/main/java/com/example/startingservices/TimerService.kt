@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Binder
 import android.os.Handler
 import android.os.IBinder
+import androidx.lifecycle.Lifecycle.Event.Companion.downTo
 
 class TimerService : Service() {
 
@@ -34,11 +35,22 @@ class TimerService : Service() {
         TimerThread().start()
     }
 
-    override fun onDestroy() {
-
-    }
+//    override fun onDestroy() {
+//
+//    }
 
     inner class TimerThread () : Thread () {
+        override fun run(startPoint: Int) {
+            for (i in startPoint downTo(0) ) {
 
+                if(::timerHandler.isInitialized) {
+                    timerHandler.sendEmptyMessage(i)
+                }
+
+                Thread.sleep(100)
+
+            }
+
+        }
     }
 }
